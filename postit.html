@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <meta charset="utf-8"/>
+        <style>
+            #message {
+                height:35px;
+                background-color:lightblue;
+            }
+            #board {
+                height : 1000px;
+                background-color:pink;
+            }
+            
+            div.post {
+                padding : 20px;
+                position : absolute;
+                /* top : 0px;
+                left : 200px;
+                background-color:yellow; */
+                height : 120px;
+                width : 120px;
+                background-image: url("https://thetomatos.com/wp-content/uploads/2016/10/green-post-it-clipart.png");
+                background-size:cover;
+                transform: rotate(25deg);
+
+            };
+            
+        </style>
+        <script>
+               //document.getElementById("board").innerHTML="olé..."
+        </script>
+    </head>
+    <body>
+        <div id="message">
+            <input type="text" id="inmessage" placeholder="write here your memo"/>
+        </div>
+        <div id="board"></div>
+    </body>
+    <script>
+    
+        //var board = document.getElementById("board");
+        //board.innerHTML="ola...";
+        //board.onclick=hello;
+        board.addEventListener("click",post);
+        //board.addEventListener("click",hello2);
+        
+        
+        
+        
+        
+        function post(event) {
+            var board =   document.getElementById("board");
+            var msg = document.getElementById("inmessage").value;
+            
+            if (msg !== "") {
+                var newpost = document.createElement("div");
+
+                newpost.setAttribute("class","post");
+                newpost.innerHTML = msg;
+                newpost.style.left=event.clientX + "px";
+                newpost.style.top=event.clientY + "px";
+            
+                board.appendChild(newpost);
+            
+                document.getElementById("inmessage").value = "";
+                newpost.addEventListener("click",unpost)
+                
+            }
+            
+            //console.log("olá");
+        }
+        
+        function hello2() {
+            console.log("olé");
+        }
+        
+        function unpost(e) {
+            var post = e.currentTarget;
+            post.remove();
+        }
+        
+    </script>
+</html>
